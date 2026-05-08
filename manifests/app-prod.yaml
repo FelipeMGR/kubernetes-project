@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-producao
+  labels:
+    app: app-proj
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-proj
+  template:
+    metadata:
+      labels:
+        app: app-proj
+    spec:
+      containers:
+      - name: nginx-server
+        image: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
